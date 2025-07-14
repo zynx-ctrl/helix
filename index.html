@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Helix Executor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gray-bg: #0d0d0d;
+      --gray-card: rgba(255, 255, 255, 0.03);
+      --text-light: #ccc;
+      --primary: #999999;
+      --primary-glow: rgba(153, 153, 153, 0.3);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--gray-bg);
+      color: var(--text-light);
+      overflow-x: hidden;
+      position: relative;
+      user-select: none;
+    }
+
+    .bg-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background:
+        radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--primary-glow), transparent 60%),
+        linear-gradient(130deg, var(--primary-glow), transparent);
+      pointer-events: none;
+      z-index: 0;
+      transition: background 0.15s ease;
+      filter: blur(40px);
+    }
+
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
+      box-shadow: 0 0 5px var(--primary-glow), 0 0 10px var(--primary-glow);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease-out;
+      z-index: 9999;
+    }
+
+    .container {
+      text-align: center;
+      padding: 6rem 2rem;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 12px var(--primary-glow);
+      color: var(--primary);
+    }
+
+    p {
+      font-size: 1.25rem;
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .btn {
+      background: var(--primary);
+      border: none;
+      color: var(--gray-bg);
+      padding: 1.2rem 4.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 0 18px var(--primary-glow);
+      margin-top: 2rem;
+      user-select: none;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px var(--primary-glow);
+      background: #bbb;
+      color: var(--gray-bg);
+    }
+
+    .card {
+      background: var(--gray-card);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2.8rem 3rem;
+      margin-top: 4rem;
+      display: inline-block;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+      transition: var(--transition);
+      max-width: 700px;
+      animation: fadeIn 2s ease-in-out;
+      color: #ccc;
+      user-select: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 20px 60px rgba(153, 153, 153, 0.12);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      .btn {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-effect" id="bg-effect"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <div class="container">
+    <h1>Helix Executor</h1>
+    <p>Helix is the next-gen Roblox script executor offering top-tier performance, stealth, and customization. With blazing-fast execution, cutting-edge security, and an intuitive UI, Helix is the ultimate tool for serious Roblox scripters.</p>
+    <button class="btn" id="download-btn">Download Now</button>
+    <div class="card">
+      <h2>Why Choose Helix?</h2>
+      <p>Helix delivers unmatched injection speeds, a powerful script hub, constant updates, and 24/7 support — all in a sleek, user-friendly package.</p>
+    </div>
+  </div>
+
+  <script>
+    const cursorDot = document.getElementById('cursor-dot');
+    const bgEffect = document.getElementById('bg-effect');
+    const downloadBtn = document.getElementById('download-btn');
+
+    document.addEventListener('mousemove', (e) => {
+      cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      bgEffect.style.setProperty('--x', `${x}%`);
+      bgEffect.style.setProperty('--y', `${y}%`);
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      window.location.href = 'https://helixexecutor.com/download';
+    });
+  </script>
+</body>
+</html>
