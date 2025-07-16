@@ -1,190 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Helix Executor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --gray-bg: #0d0d0d;
-      --gray-card: rgba(255, 255, 255, 0.03);
-      --text-light: #ccc;
-      --primary: #999999;
-      --primary-glow: rgba(153, 153, 153, 0.3);
-      --transition: all 0.3s ease;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--gray-bg);
-      color: var(--text-light);
-      overflow-x: hidden;
-      position: relative;
-      user-select: none;
-    }
-
-    .bg-effect {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background:
-        radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--primary-glow), transparent 60%),
-        linear-gradient(130deg, var(--primary-glow), transparent);
-      pointer-events: none;
-      z-index: 0;
-      transition: background 0.15s ease;
-      filter: blur(40px);
-    }
-
-    .cursor-dot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 14px;
-      height: 14px;
-      background: var(--primary);
-      box-shadow: 0 0 5px var(--primary-glow), 0 0 10px var(--primary-glow);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: transform 0.08s ease-out;
-      z-index: 9999;
-    }
-
-    .container {
-      text-align: center;
-      padding: 6rem 2rem;
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 12px var(--primary-glow);
-      color: var(--primary);
-    }
-
-    p {
-      font-size: 1.25rem;
-      max-width: 720px;
-      margin: 0 auto 2rem;
-      color: #aaa;
-      line-height: 1.6;
-    }
-
-    .btn {
-      background: var(--primary);
-      border: none;
-      color: var(--gray-bg);
-      padding: 1.2rem 4.5rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 16px;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 0 18px var(--primary-glow);
-      margin-top: 2rem;
-      user-select: none;
-    }
-
-    .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px var(--primary-glow);
-      background: #bbb;
-      color: var(--gray-bg);
-    }
-
-    .card {
-      background: var(--gray-card);
-      backdrop-filter: blur(12px);
-      border-radius: 16px;
-      padding: 2.8rem 3rem;
-      margin-top: 4rem;
-      display: inline-block;
-      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
-      transition: var(--transition);
-      max-width: 700px;
-      animation: fadeIn 2s ease-in-out;
-      color: #ccc;
-      user-select: none;
-    }
-
-    .card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 20px 60px rgba(153, 153, 153, 0.12);
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-      .btn {
-        width: 100%;
-        font-size: 1rem;
-      }
-    }
-  </style>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helix - Powerful Roblox Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="bg-effect" id="bg-effect"></div>
-  <div class="cursor-dot" id="cursor-dot"></div>
-
-  <div class="container">
-    <h1>Helix Executor</h1>
-    <p>Helix is the next-gen Roblox script executor offering top-tier performance, stealth, and customization. With blazing-fast execution, cutting-edge security, and an intuitive UI, Helix is the ultimate tool for serious Roblox scripters.</p>
-    <button class="btn" id="download-btn">Download Now</button>
-    <div class="card">
-      <h2>Why Choose Helix?</h2>
-      <p>Helix delivers unmatched injection speeds, a powerful script hub, constant updates, and 24/7 support — all in a sleek, user-friendly package.</p>
+    <div class="background-wrapper">
+        <div class="bg-overlay"></div>
+        <div class="bg-pattern" style="transform: translateX(-0.155689px) translateY(0.5919px) rotate(5deg);"></div>
+        <div class="floating-particles" id="particles"><div class="particle" style="left: 25.4271%; animation-delay: 8.36809s; animation-duration: 26.6976s;"></div><div class="particle" style="left: 76.1871%; animation-delay: 2.33642s; animation-duration: 24.085s;"></div><div class="particle" style="left: 63.3114%; animation-delay: 15.7628s; animation-duration: 22.7383s;"></div><div class="particle" style="left: 81.2017%; animation-delay: 11.7494s; animation-duration: 27.7038s;"></div><div class="particle" style="left: 23.182%; animation-delay: 1.21595s; animation-duration: 21.9505s;"></div><div class="particle" style="left: 34.1044%; animation-delay: 4.07641s; animation-duration: 22.9078s;"></div><div class="particle" style="left: 39.6112%; animation-delay: 4.50764s; animation-duration: 26.6107s;"></div><div class="particle" style="left: 58.0717%; animation-delay: 11.7868s; animation-duration: 21.6479s;"></div><div class="particle" style="left: 10.3721%; animation-delay: 10.3035s; animation-duration: 27.4689s;"></div><div class="particle" style="left: 6.43677%; animation-delay: 3.09237s; animation-duration: 23.8437s;"></div><div class="particle" style="left: 66.8433%; animation-delay: 15.6377s; animation-duration: 27.2422s;"></div><div class="particle" style="left: 7.7055%; animation-delay: 19.9197s; animation-duration: 26.8193s;"></div><div class="particle" style="left: 21.8459%; animation-delay: 9.70704s; animation-duration: 24.645s;"></div><div class="particle" style="left: 92.1904%; animation-delay: 18.5431s; animation-duration: 29.1351s;"></div><div class="particle" style="left: 37.8386%; animation-delay: 10.3647s; animation-duration: 26.0816s;"></div></div>
     </div>
-  </div>
 
-  <script>
-    const cursorDot = document.getElementById('cursor-dot');
-    const bgEffect = document.getElementById('bg-effect');
-    const downloadBtn = document.getElementById('download-btn');
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="bunnilogo.png" alt="bunni.lol Logo">
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#platforms">Platforms</a></li>
+                    <li><a href="#status">Status</a></li>
+                </ul>
+                
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#platforms">Platforms</a></li>
+                <li><a href="#status">Status</a></li>
+            </ul>
+        </div>
+    </header>
 
-    document.addEventListener('mousemove', (e) => {
-      cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo-container reveal-text visible">
+                <img src="bunnilogo.png" alt="bunni.lol Logo" class="hero-logo">
+                <div class="logo-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                    <div class="sparkle sparkle-4"></div>
+                </div>
+            </div>
+            <h1 class="reveal-text visible">Helix</h1>
+            <p class="reveal-text visible">The ultimate premium Roblox exploiting tool</p>
+            <div class="cta-buttons reveal-text">
+                <a href="#platforms" class="cta-button primary">Download Now</a>
+            </div>
+        </div>
+    </section>
 
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      bgEffect.style.setProperty('--x', `${x}%`);
-      bgEffect.style.setProperty('--y', `${y}%`);
-    });
 
-    downloadBtn.addEventListener('click', () => {
-      window.location.href = 'https://helixexecutor.com/download';
-    });
-  </script>
-</body>
-</html>
+    <section id="features" class="features">
+        <h2 class="section-title">Premium Features</h2>
+        <div class="features-grid">
+            <div class="feature-card" data-delay="0">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Lightning Fast</h3>
+                <p>Optimized performance across all platforms good resource management.</p>
+            </div>
+            <div class="feature-card" data-delay="200">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>UNC Compatability</h3>
+                <p>100% sUNC means Helix is capable of what others arent.</p>
+            </div>
+            <div class="feature-card" data-delay="300">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Singular Platform (yet...)</h3>
+                <p>Available on Windows with one thing in mind, you!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="platforms" class="platforms">
+        <h2 class="section-title">Available Platforms</h2>
+        <div class="platform-tabs">
+            <div class="tab-buttons">
+                <button class="tab-button" data-platform="windows">
+                    <i class="fab fa-windows"></i> Windows
+                </button>
+                
+                
+                
+            </div>
+            <div class="tab-content">
+                
+                
+                
+                <div class="tab-pane" data-platform="windows">
+                    <div class="platform-info">
+                        <h3>Windows Version</h3>
+                        <p class="version">UPDATED</p>
+                        <p class="description">Full-feature freemium executor with amazing performance and great support!</p>
+                        <div class="platform-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Advanced Script Editor</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Light ZIP File</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Integrated Roblox Console</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>100 sUNC</span>
+                            </div>
+                        </div>
+                        <a href="#" class="platform-download-button">
+                            <span>Download for Windows</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="status" class="status">
+        <h2 class="section-title">Service Status</h2>
+        <div class="status-container">
+            <div class="status-card">
+                <div class="status-header">
+                    <h3>Platform Status</h3>
+                </div>
+                <div class="status-items">
+                    
+                    
+                    
+                    <div class="status-item">
+                        <div class="status-info">
+                            <i class="fab fa-windows"></i>
+                            <span>Windows Version</span>
+                        </div>
+                        <div class="status-indicator online">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="bunnilogo.png" alt="bunni.lol Logo" class="footer-logo-img">
+                <p>The ultimate Roblox tool</p>
+                <div class="social-links">
+                    <a href="https://youtube.com/@ZYNXRBLX"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Helix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+
+</body></html>
