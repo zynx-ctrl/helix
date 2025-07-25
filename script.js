@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (platform === "windows") {
         // Open download link in new tab
-        window.open("https://www.mediafire.com/file/lqatl50zpdjejc9/helixv2.zip/file", "_blank")
+        window.open("https://www.mediafire.com/file/hveoq5lktmrbc6v/Helix.zip/file", "_blank")
         hideDownloadPopup()
       } else if (platform === "macos") {
         // Copy to clipboard and show installation instructions
